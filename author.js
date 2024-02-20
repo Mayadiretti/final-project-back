@@ -23,15 +23,15 @@ const schema = new Schema({
         required: true,
         max: () => {
             const now= dayjs();
-            const fiveYearsAgo = now.so
+            const fiveYearsAgo = now.subtract(5, "years");
+            return fiveYearsAgo.format("YYYY-MM-DD")
         },
     },
-    author:{
-        type: SchemaTypes.ObjectId,
+    recipes:{
+        type: [SchemaTypes.ObjectId],
         ref: "Chef" ,
-        required: true, 
     }
 });
 
-const Recipe = model('Recipe', schema);
-export default Recipe;
+const author = model('author', schema);
+export default author;
